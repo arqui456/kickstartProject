@@ -18,5 +18,38 @@
 | Lançar Kickstart | Um usuário pode lançar seu projeto como kickstart o projeto deve possuir uma categoria, uma descrição, o usuário deve ser de um país elegível, ter no mínimo 18 anos, ter uma conta bancária no país de origem e um cartão de débito/crédito |
 | Fundar Kickstart | Um usuário deve poder investir em qualquer projeto de seu interesse |
 | Editar kickstart | O dono de um projeto deve ser capaz de editar seu kickstart, adicionando conteúdo a sua descrição, como recompensas,imagens |
-|  | |
-| Listar projetos kickstart | Lista todos os projetos atuais, separados por categoria | 
+| Deletar Kickstart| O dono do projeto ou um usuário adminstrador podem deletar um projeto |
+| Listar projetos kickstart | Lista todos os projetos atuais, separados por categoria |
+ 
+***
+### Requisitos detalhados
+
+#### Kickstarter
+Um kickstarter pode possuir:
+
+	* Um título
+	* descrição
+	* categoria
+	* objetivo financeiro
+	* duração(até 60 dias)
+	* colaboradores
+	* a imagem do projeto
+	* Localização
+	* Recompensas 
+	* video do projeto
+	* galeria 
+
+Um usuário pode possuir:
+
+	* Foto de perfil
+	* Nome 
+	* Biografia
+	* Localização
+	* email
+	* Conta bancária
+
+Uma conta bancária possui:
+
+	* Id
+	* Localização
+	* Saldo
