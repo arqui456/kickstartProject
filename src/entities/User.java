@@ -1,5 +1,8 @@
 package entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class User implements Backer {
 	
 				protected String login;
@@ -9,6 +12,7 @@ public abstract class User implements Backer {
 				protected String userDetails;
 				protected CreditCard creditCard;
 				protected Bank bank;
+				protected List<Project> projects = new ArrayList<>();
 				
 				public abstract String getLogin() ;
 				public abstract void setLogin(String login) ;
@@ -24,4 +28,7 @@ public abstract class User implements Backer {
 				public abstract void setCreditCard(CreditCard creditCard) ;
 				public abstract Bank getBank() ;
 				public abstract void setBank(Bank bank) ;
+				public abstract List<Project> getAllProjects();
+				public abstract void addProject(Project project);
+				public abstract void removeProjectByTitle(String title);
 }

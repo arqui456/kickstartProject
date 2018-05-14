@@ -16,5 +16,5 @@ public enum Category {
 				PUBLISHING,
 				TECHNOLOGY,
 				THEATER,
-				UNDIFINED
+				UNDEFINED
 }

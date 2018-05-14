@@ -22,18 +22,22 @@ public class Project {
 								achievedFunds = 0;
 								fundingDuration = 0;
 								ownerLogin = "";
-								category = Category.UNDIFINED;
+								category = Category.UNDEFINED;
 								backers = new ArrayList<>();
 								rewards = new ArrayList<>();
 				}
 				
-				public Project(String name, String description, double goal, double achievedFunds,int fundingDuration, String ownerLogin,Category category) {
+				public Project(String name, int fundingDuration, double goal, String description) {
 								this();
 								this.name = name;
-								this.description = description;
-								this.goal = goal;
-								this.achievedFunds = achievedFunds;
 								this.fundingDuration = fundingDuration;
+								this.goal = goal;
+								this.description = description;
+				}
+				
+				public Project(String name, String description, double goal, double achievedFunds,int fundingDuration, String ownerLogin,Category category) {
+								this(name, fundingDuration, goal, description);
+								this.achievedFunds = achievedFunds;
 								this.ownerLogin = ownerLogin;
 								this.category = category;
 				}

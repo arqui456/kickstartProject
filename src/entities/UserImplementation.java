@@ -1,5 +1,7 @@
 package entities;
 
+import java.util.List;
+
 public class UserImplementation extends User {
 
 				public UserImplementation() {
@@ -107,6 +109,22 @@ public class UserImplementation extends User {
 				public double getDonation() {
 					// TODO Auto-generated method stub
 					return 0;
+				}
+				
+				public void addProject(Project project) {
+					projects.add(project);
+				}
+				
+				public void removeProjectByTitle(String title) {
+					for(Project project : projects) 
+						if(project.getName().equals(title)) {
+							projects.remove(project);
+							return;
+						}
+				}
+				
+				public List<Project> getAllProjects() {
+					return projects;
 				}
 				
 				@Override

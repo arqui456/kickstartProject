@@ -2,13 +2,17 @@ package initializer;
 
 import java.util.Scanner;
 
+import entities.Category;
 import entities.Kickstarter;
+import entities.Project;
 import entities.User;
+import utils.SearchProjects;
 
 public class Session {
 
 	             private Scanner scanner;
 	             private User user;
+	             private SearchProjects projetsList;
 			     
 			     public  Session() {
 			    	 
@@ -31,6 +35,7 @@ public class Session {
 			     public void login(User user) {
 			    	 				this.user = user;
 			    	 				scanner = new Scanner(System.in);
+			    	 				projetsList = new SearchProjects();
 			    	 				SessionMenu();
 			     }
 			     
@@ -56,10 +61,13 @@ public class Session {
 			    	 								
 			    	 								switch(rawInput) {
 							    	 								case 1:
+							    	 											newProject();
 							    	 											break;
 							    	 								case 2:
+							    	 											existingKickstartProjects();
 							    	 											break;
 							    	 								case 3:
+							    	 									editAccount();
 							    	 											break;
 							    	 								case 4:
 							    	 											break;
@@ -120,4 +128,120 @@ public class Session {
 			    	 			}
 			     }
 			     
+			     private void existingKickstartProjects() {
+			    	 				if(projetsList.listProjects().size() > 0){
+			    	 								System.out.println("To see more info about a project, select it by its id ");
+			    	 								int id = 0;
+			    	 								System.out.println("Projects ------------------------id");
+			    	 								for (Project project : projetsList.listProjects()) {
+			    	 													System.out.println(project + "  " + id++);
+			    	 								}
+			    	 								int input = -1;
+			    			    	 				try {
+			    			    	 					input = Integer.parseInt(scanner.nextLine());
+			    			    	 				} catch(Exception e) {
+			    			    	 					input = -1;
+			    			    	 				}
+			    	 				} else {
+			    	 								System.out.println("List is empty.");
+			    	 				}
+			     }
+			     
+			     private void newProject() {
+			    	 			boolean isAddingProject = true;
+						 		while(isAddingProject) {
+									 			System.out.print("Type project name: ");
+									 			String name = scanner.nextLine();
+									 			System.out.print("Add a description: ");
+									 			String description = scanner.nextLine();
+									 			System.out.print("Type desired money: ");
+									 			double desiredMoney = Double.parseDouble(scanner.nextLine());
+									 			System.out.print("Type duration: ");
+									 			int duration = Integer.parseInt(scanner.nextLine());
+									 			Project project = new Project(name, duration, desiredMoney, description);
+									 			System.out.println("Type the category: ");
+									 			System.out.println("1. ART");
+									 			System.out.println("2. COMMICS");
+									 			System.out.println("3. CRAFTS");
+									 			System.out.println("4. DANCE");
+									 			System.out.println("5. DESIGN");
+									 			System.out.println("6. FASHION");
+									 			System.out.println("7. FILM_AND_VIDEO");
+									 			System.out.println("8. FOOD");
+									 			System.out.println("9. GAMES");
+									 			System.out.println("10. JOURNALISM");
+									 			System.out.println("11. MUSIC");
+									 			System.out.println("12. PHOTOGRAPHY");
+									 			System.out.println("13. PUBLISHING");
+									 			System.out.println("14. TECHNOLOGY");
+									 			System.out.println("15. THEATER");
+									 			System.out.println("16. UNDEFINED");
+									 			System.out.print(">>>");
+						 			
+									 			int option = -1;
+									 			try {
+									 				option = Integer.parseInt(scanner.nextLine());
+									 			} catch(Exception e) {
+									 				System.out.println("PROCLEM");
+									 				option = -1;
+									 			}
+									 			
+									 			switch(option) {
+									 				case 1:
+									 					project.setCategory(Category.ART);
+									 					break;
+									 				case 2:
+									 					project.setCategory(Category.COMMICS);
+									 					break;
+									 				case 3:
+									 					project.setCategory(Category.CRAFTS);
+									 					break;
+									 				case 4:
+									 					project.setCategory(Category.DANCE);
+									 					break;
+									 				case 5:
+									 					project.setCategory(Category.DESIGN);
+									 					break;
+									 				case 6:
+									 					project.setCategory(Category.FASHION);
+									 					break;
+									 				case 7:
+									 					project.setCategory(Category.FILM_AND_VIDEO);
+									 					break;
+									 				case 8:
+									 					project.setCategory(Category.FOOD);
+									 					break;
+									 				case 9:
+									 					project.setCategory(Category.GAMES);
+									 					break;
+									 				case 10:
+									 					project.setCategory(Category.JOURNALISM);
+									 					break;
+									 				case 11:
+									 					project.setCategory(Category.MUSIC);
+									 					break;
+									 				case 12:
+									 					project.setCategory(Category.PHOTOGRAPHY);
+									 					break;
+									 				case 13:
+									 					project.setCategory(Category.PUBLISHING);
+									 					break;
+									 				case 14:
+									 					project.setCategory(Category.TECHNOLOGY);
+									 					break;
+									 				case 15:
+									 					project.setCategory(Category.THEATER);
+									 					break;
+									 				default:
+									 					project.setCategory(Category.UNDEFINED);
+									 					break;
+									 			}
+			 			
+			 			project.setOwnerLogin(user.getLogin());
+			 			user.addProject(project);
+			 			Kickstart.kick.addProject(project);
+			 			isAddingProject = false;
+			 		}
+			    	 			
+			     }
 }
