@@ -3,11 +3,13 @@ package initializer;
 import java.util.Scanner;
 
 import entities.Kickstarter;
+import entities.User;
+import entities.UserImplementation;
 
 public class Kickstart {
 
 				private Scanner scanner;
-				private static Kickstarter kick;
+				public static Kickstarter kick;
 				private Session session;
 				
 				public  Kickstart() {
@@ -55,12 +57,35 @@ public class Kickstart {
 								 String login = scanner.nextLine();
 								 System.out.println("Type in your password: ");
 								 String password = scanner.nextLine();
-								 if(login != null && password != null) {
-									 //User user = new User();
+								 if(!login.equals("") && !password.equals("")) {
+									 				User user = session.UserExists(login, password);
+									 				if(user != null) {
+									 								session.login(user);
+									 				}
+									 				else if(!session.isDuplicatedLogin(login)) {
+									 								System.out.println("Login already in use!");
+									 				}
+									 				else {
+									 								System.out.println("User don't exist");
+									 				}
 								 }
 				}
 				
 				private void register() {
+								System.out.println("Type in your login: ");
+								String login = scanner.nextLine();
+								if(!session.isDuplicatedLogin(login)) {
+													System.out.println("Type in your name: ");
+													String name = scanner.nextLine();
+													System.out.println("Type in your password: ");
+													String password = scanner.nextLine();
+													User user = new UserImplementation(login, password, name);
+													kick.addNewUser(user);
+													System.out.println("User " + user + "added to the system!");
+													session.login(user);
+								} else {
+												System.out.println("Login already in use!");
+								}
 					
 				}
 }

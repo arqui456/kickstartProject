@@ -1,6 +1,6 @@
 package entities;
 
-public abstract class UserImplementation extends User {
+public class UserImplementation extends User {
 
 				public UserImplementation() {
 								 login = "";
@@ -12,10 +12,14 @@ public abstract class UserImplementation extends User {
 								 bank = new BankerImplementation();								
 				}
 				
-				public UserImplementation(String login, String password, String name, String locale, String userDetails, CreditCard creditCard, Bank bank) {
+				public UserImplementation(String login, String password, String name) {
 								this.login = login;
 								this.password = password;
-								this.name = name;
+								this.name = name;								
+				}
+				
+				public UserImplementation(String login, String password, String name, String locale, String userDetails, CreditCard creditCard, Bank bank) {
+								this(login, password,name);
 								this.locale = locale;
 								this.userDetails = userDetails;
 								this.creditCard = creditCard;
@@ -94,8 +98,21 @@ public abstract class UserImplementation extends User {
 				}
 				
 				@Override
+				public String getBackerName() {
+					// TODO Auto-generated method stub
+					return null;
+				}
+
+				@Override
+				public double getDonation() {
+					// TODO Auto-generated method stub
+					return 0;
+				}
+				
+				@Override
 				public String toString() {
 					return "UserImplemented [name=" + name + ", login=" + login + ", password=" + password + ", bank="
 							+ bank + ", userDetails=" + userDetails + ", locale=" + locale + "]";
 				}
+
 }	
